@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Contact</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: url("porfolio/paysage5.jpg") no-repeat center fixed;
+      background-size: cover;
+      color: #fff;
+    }
+
+    .overlay {
+      background: rgba(109, 58, 58, 0.6);
+      min-height: 100vh;
+      padding: 40px 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .form-box {
+      background: rgba(255, 255, 255, 0.95);
+      color: #333;
+      padding: 30px;
+      border-radius: 12px;
+      max-width: 500px;
+      width: 100%;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-top: 12px;
+      font-weight: bold;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 6px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 15px;
+      box-sizing: border-box;
+    }
+
+    button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 12px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+    <div class="overlay">
+        <div class="form-box">
+            <h2>Formulaire de contact</h2>
+      
+            <form action="#" method="post">
+                <label>Type de contact</label>
+                <select id="type" name="type" onchange="toggleFields()" required>
+                    <option value="">-- Choisir --</option>
+                    <option value="particulier">Particulier</option>
+                    <option value="entreprise">Entreprise</option>
+                </select>
+
+                <div id="particulier-fields" class="hidden">
+                    <label>Nom et prénom</label>
+                    <input type="text" name="nom_particulier" required>
+          
+                    <label>Email</label>
+                    <input type="email" name="email_particulier" required>
+                </div>
+
+                <div id="entreprise-fields" class="hidden">
+                    <label>Nom de l'entreprise</label>
+                    <input type="text" name="nom_entreprise" required>
+          
+                    <label>Nom du contact</label>
+                    <input type="text" name="contact_entreprise" required>
+          
+                    <label>Email professionnel</label>
+                    <input type="email" name="email_entreprise" required>
+          
+                    <label>SIRET / N° d'entreprise</label>
+                    <input type="text" name="siret" required>
+                </div>
+
+                <label>Parlez-moi de votre projet:</label>
+                <textarea name="message" rows="4" required></textarea>
+                
+
+                <label> Un Message ou une suggestion ?</label>
+                <textarea name="message" rows="5" ></textarea>
+
+                <button type="submit">Envoyer</button>
+            </form>
+        </div>
+    </div>
+
+  <script>
+    function toggleFields() {
+      const type = document.getElementById('type').value;
+      document.getElementById('particulier-fields').classList.add('hidden');
+      document.getElementById('entreprise-fields').classList.add('hidden');
+      
+      if (type === 'particulier') {
+        document.getElementById('particulier-fields').classList.remove('hidden');
+      } else if (type === 'entreprise') {
+        document.getElementById('entreprise-fields').classList.remove('hidden');
+      }
+    }
+  </script>
+
+</body>
+</html>
