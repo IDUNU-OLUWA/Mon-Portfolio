@@ -71,6 +71,30 @@
     .hidden {
       display: none;
     }
+
+    .divider {
+      margin: 20px 0;
+      border-top: 1px solid #ccc;
+    }
+
+    .btn-whatsapp {
+      display: block;
+      text-align: center;
+      width: 100%;
+      padding: 12px;
+      background-color: #25D366;
+      color: white;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: bold;
+      text-decoration: none;
+      box-sizing: border-box;
+      transition: background 0.3s;
+    }
+
+    .btn-whatsapp:hover {
+      background-color: #1eb954;
+    }
   </style>
 </head>
 <body>
@@ -79,8 +103,12 @@
         <div class="form-box">
             <h2>Formulaire de contact</h2>
       
-            <form action="#" method="post">
+            <form action="https://formspree.io/f/xnpqqgld" method="post">
+
+                <input type="hidden" name="_next" value="https://idunu-oluwa.github.io/portfolio/index.html">
+
                 <label>Type de contact</label>
+                
                 <select id="type" name="type" onchange="toggleFields()" required>
                     <option value="">-- Choisir --</option>
                     <option value="particulier">Particulier</option>
@@ -89,48 +117,62 @@
 
                 <div id="particulier-fields" class="hidden">
                     <label>Nom et prénom</label>
-                    <input type="text" name="nom_particulier" required>
+                    <input type="text" name="nom_particulier">
           
                     <label>Email</label>
-                    <input type="email" name="email_particulier" required>
+                    <input type="email" name="email_particulier">
                 </div>
 
                 <div id="entreprise-fields" class="hidden">
                     <label>Nom de l'entreprise</label>
-                    <input type="text" name="nom_entreprise" required>
+                    <input type="text" name="nom_entreprise">
           
                     <label>Nom du contact</label>
-                    <input type="text" name="contact_entreprise" required>
+                    <input type="text" name="contact_entreprise">
           
                     <label>Email professionnel</label>
-                    <input type="email" name="email_entreprise" required>
+                    <input type="email" name="email_entreprise">
           
                     <label>SIRET / N° d'entreprise</label>
-                    <input type="text" name="siret" required>
+                    <input type="text" name="siret">
                 </div>
 
                 <label>Parlez-moi de votre projet:</label>
-                <textarea name="message" rows="4" required></textarea>
+                <textarea name="message_projet" rows="4" required></textarea>
                 
-
                 <label> Un Message ou une suggestion ?</label>
-                <textarea name="message" rows="5" ></textarea>
+                <textarea name="suggestion" rows="5"></textarea>
 
-                <button type="submit">Envoyer</button>
+                <button type="submit">Envoyer par Email</button>
             </form>
+
+            <div class="divider"></div>
+            <a href="https://wa.me/22963732326?text=Bonjour,%20je%20souhaite%20vous%20contacter%20suite%20%C3%A0%20votre%20portfolio !" 
+               target="_blank" 
+               class="btn-whatsapp">
+               Discuter sur WhatsApp
+            </a> 
         </div>
     </div>
 
   <script>
     function toggleFields() {
       const type = document.getElementById('type').value;
-      document.getElementById('particulier-fields').classList.add('hidden');
-      document.getElementById('entreprise-fields').classList.add('hidden');
+      const partBox = document.getElementById('particulier-fields');
+      const entBox = document.getElementById('entreprise-fields');
+
+      partBox.classList.add('hidden');
+      entBox.classList.add('hidden');
+
+      partBox.querySelectorAll('input').forEach(input => input.required = false);
+      entBox.querySelectorAll('input').forEach(input => input.required = false);
       
       if (type === 'particulier') {
-        document.getElementById('particulier-fields').classList.remove('hidden');
+        partBox.classList.remove('hidden');
+        partBox.querySelectorAll('input').forEach(input => input.required = true);
       } else if (type === 'entreprise') {
-        document.getElementById('entreprise-fields').classList.remove('hidden');
+        entBox.classList.remove('hidden');
+        entBox.querySelectorAll('input').forEach(input => input.required = true);
       }
     }
   </script>
